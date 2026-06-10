@@ -75,13 +75,26 @@ ComfyUI/models/checkpoints/openaudio-s1-mini/
 ```
 If you keep fish-speech outside the venv, set env var `FISH_SPEECH_DIR` to the checkout.
 
-### Default voices (important!)
-Cloning engines always need *some* reference voice. For parameter-only characters,
-drop 5–15 s WAV seed clips into `assets/default_voices/`:
+### Default voices
+Cloning engines always need *some* reference voice. Speech-God falls back to the
+reference clip bundled with `f5-tts`, so **parameter-only characters work out of
+the box** — every character with no Voice Reference shares that neutral voice,
+differentiated by pitch/tempo/energy. For distinct default voices, drop 5–15 s
+WAV seed clips into `assets/default_voices/`:
 ```
 female_child.wav   male_elderly.wav   neutral_adult.wav   default.wav   ...
 ```
-Priority: `<gender>_<age>.wav` → `<gender>.wav` → `neutral_adult.wav` → `default.wav`.
+Priority: `<gender>_<age>.wav` → `<gender>.wav` → `neutral_adult.wav` →
+`default.wav` → the bundled f5-tts clip. (For truly distinct characters, connect a
+Voice Reference per character — that's what cloning is for.)
+
+### Audio I/O note (Windows / torchaudio ≥ 2.8)
+Recent torchaudio routes all `load`/`save` through **torchcodec**, which needs
+FFmpeg shared libraries that many Windows installs lack (`Could not load
+libtorchcodec`). Speech-God detects this at engine-load time and transparently
+shims `torchaudio.load`/`save` with **soundfile** (libsndfile, no FFmpeg needed),
+which also fixes F5-TTS's internal reference loading. No action required; if your
+torchcodec works, the shim stays out of the way.
 
 ---
 
@@ -151,7 +164,9 @@ prepended to the cloning reference so the engine absorbs its delivery.
 | Symptom | Fix |
 |---|---|
 | `F5-TTS is not installed` | install requirements.txt into **the venv**, not system python |
-| `no voice reference available` | connect LoadAudio to the Character, or add seed wavs to `assets/default_voices/` |
+| `Could not load libtorchcodec` | handled automatically (soundfile shim). If it still appears, `pip install soundfile` into the venv |
+| `no voice reference available` | only if f5-tts isn't importable; otherwise the bundled default voice is used. Connect LoadAudio or add seed wavs to `assets/default_voices/` for distinct voices |
+| Very slow / "process exited" right after install | f5-tts pulls a large dependency train (gradio/fastapi/bitsandbytes) that ComfyUI scans on cold start; none are needed for inference — safe to `pip uninstall` them. Add a Defender exclusion for the ComfyUI folder |
 | `fish-speech model folder not found` | download openaudio-s1-mini into `models/checkpoints/openaudio-s1-mini/` |
 | Robotic / wrong-pitch output | lower the micro sliders; extreme age+tone combos stack pitch (child+excited ≈ +7 st) — reduce energy or pick `young_adult` |
 | Cloned voice ignores emotion | F5 follows the reference's emotion: use an Emotion Reference clip or switch to fish-speech (markers) |

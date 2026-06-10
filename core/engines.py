@@ -23,6 +23,62 @@ DEFAULT_VOICES = os.path.join(PKG_DIR, "assets", "default_voices")
 _ENGINE_CACHE = {}
 
 
+# --------------------------------------------------------------- audio I/O
+# torchaudio >= 2.8 routes ALL load/save through torchcodec, which needs FFmpeg
+# shared libraries on the system. On many Windows ComfyUI installs those DLLs
+# are absent, so torchaudio.load/save raise "Could not load libtorchcodec".
+# soundfile (libsndfile, bundled in its wheel) has no such dependency, so we
+# read/write WAV via soundfile and, when torchcodec is broken, transparently
+# shim torchaudio.load/save with soundfile-backed versions. This also fixes
+# F5-TTS, which calls torchaudio.load() on the reference internally.
+_IO_PATCHED = False
+
+
+def _sf_load(filepath, frame_offset=0, num_frames=-1, normalize=True,
+             channels_first=True, format=None, buffer_size=4096, backend=None):
+    import soundfile as sf
+    start = int(frame_offset) or 0
+    stop = None if (num_frames is None or num_frames < 0) else start + int(num_frames)
+    data, sr = sf.read(str(filepath), start=start, stop=stop,
+                       dtype="float32", always_2d=True)  # [T, C]
+    wave = torch.from_numpy(data.copy())
+    wave = wave.t().contiguous() if channels_first else wave   # -> [C, T]
+    return wave, sr
+
+
+def _sf_save(filepath, src, sample_rate, channels_first=True, format=None,
+             encoding=None, bits_per_sample=None, buffer_size=4096, backend=None,
+             compression=None):
+    import numpy as np  # noqa: F401
+    import soundfile as sf
+    arr = src.detach().cpu().float().numpy()
+    if arr.ndim == 1:
+        arr = arr[None, :]
+    if channels_first:
+        arr = arr.T                                            # [C,T] -> [T,C]
+    sf.write(str(filepath), arr, int(sample_rate))
+
+
+def ensure_audio_io():
+    """Install soundfile-backed torchaudio.load/save shims iff torchcodec is
+    broken. Idempotent; safe no-op when torchaudio I/O already works."""
+    global _IO_PATCHED
+    if _IO_PATCHED:
+        return
+    _IO_PATCHED = True
+    try:
+        from torchcodec.decoders import AudioDecoder  # noqa: F401 - triggers DLL load
+        return  # torchcodec works -> leave native torchaudio in place
+    except Exception:
+        pass
+    try:
+        import soundfile  # noqa: F401 - confirm fallback is available
+    except Exception:
+        return  # nothing we can do; let the native error surface
+    torchaudio.load = _sf_load
+    torchaudio.save = _sf_save
+
+
 def get_engine(name: str, device: str = "auto", precision: str = "auto"):
     key = (name, device, precision)
     if key not in _ENGINE_CACHE:
@@ -48,23 +104,49 @@ def _resolve_device(device):
     return device
 
 
+def _bundled_reference():
+    """F5-TTS ships an English reference clip with a known transcript. We use it
+    as a last-resort default so parameter-only characters render *something*
+    instead of crashing. Returning the known transcript skips Whisper
+    auto-transcription (avoids a ~1.6 GB download and a slow first run)."""
+    try:
+        import importlib.util
+        spec = importlib.util.find_spec("f5_tts")
+        locs = list(getattr(spec, "submodule_search_locations", None) or [])
+        if not locs:  # fall back to a submodule that has a real __file__
+            import f5_tts.api as _a
+            locs = [os.path.dirname(os.path.abspath(_a.__file__))]
+        wav = os.path.join(locs[0], "infer", "examples", "basic", "basic_ref_en.wav")
+        if os.path.exists(wav):
+            wave, sr = _sf_load(wav)
+            return wave, sr, "Some call me nature, others call me mother nature."
+    except Exception:
+        pass
+    return None, None, ""
+
+
 def default_voice(gender: str, age: str):
-    """Find a default reference voice wav for parameter-only characters."""
+    """Find a default reference voice for parameter-only characters.
+
+    Priority: user-supplied wavs in assets/default_voices/  ->  F5-TTS's
+    bundled example clip. Returns (wave [C,T], sr, ref_text). ref_text is ""
+    for user wavs (engine will auto-transcribe) and the known transcript for
+    the bundled fallback."""
     candidates = [
         f"{gender}_{age}.wav", f"{gender}.wav", "neutral_adult.wav", "default.wav",
     ]
     for c in candidates:
         p = os.path.join(DEFAULT_VOICES, c)
         if os.path.exists(p):
-            wave, sr = torchaudio.load(p)
-            return wave, sr
-    return None, None
+            wave, sr = _sf_load(p)
+            return wave, sr, ""
+    return _bundled_reference()
 
 
 def _temp_wav(wave, sr):
     f = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
     f.close()
-    torchaudio.save(f.name, wave.cpu(), sr)
+    _sf_save(f.name, wave.cpu(), sr)
     return f.name
 
 
@@ -96,6 +178,7 @@ class F5Engine(BaseEngine):
 
     def _load(self):
         if self._model is None:
+            ensure_audio_io()  # F5-TTS reads the reference via torchaudio.load
             try:
                 from f5_tts.api import F5TTS
             except ImportError as e:
@@ -149,6 +232,7 @@ class FishEngine(BaseEngine):
 
     def _load(self):
         if self._model is None:
+            ensure_audio_io()
             try:
                 self._model = self._load_package()
             except ImportError as e:

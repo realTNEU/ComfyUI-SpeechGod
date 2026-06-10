@@ -285,12 +285,24 @@ class SpeechGodGenerate:
         delivery = resolve_delivery(character, character.get("emotion_blend"))
 
         ref = character.get("voice_reference")
+        ref_text = character.get("reference_text", "")
         if ref is not None:
             ref_wave = dsp.to_ct(ref["waveform"])
             ref_sr = ref["sample_rate"]
         else:
-            ref_wave, ref_sr = engines.default_voice(
+            ref_wave, ref_sr, default_text = engines.default_voice(
                 character.get("gender", "neutral"), character.get("age", "adult"))
+            if ref_wave is None:
+                raise RuntimeError(
+                    "Speech-God: no voice reference for character "
+                    f"'{character.get('character_name', '?')}'. Connect a Voice "
+                    "Reference (LoadAudio), load a saved character, or drop seed "
+                    "wavs into custom_nodes/ComfyUI-SpeechGod/assets/default_voices/. "
+                    "(A bundled fallback voice ships with f5-tts; this error means "
+                    "f5-tts is not importable.)"
+                )
+            if not ref_text:
+                ref_text = default_text
 
         # emotion reference: prepend its pacing/emotion to the cloning reference
         emo = character.get("emotion_reference")
@@ -305,7 +317,7 @@ class SpeechGodGenerate:
 
         wave, sr = eng.synthesize(
             text=text, ref_wave=ref_wave, ref_sr=ref_sr,
-            ref_text=character.get("reference_text", ""),
+            ref_text=ref_text,
             style_text=delivery["style_text"], markers=delivery["markers"],
             speed=delivery["tempo"] * (1.0 + jitter(0.08)),
             seed=seed, variation=variation,
@@ -403,6 +415,7 @@ class SpeechGodExport:
 
     def export(self, audio, filename_prefix, format, sample_rate):
         import torchaudio
+        engines.ensure_audio_io()  # soundfile shim if torchcodec/FFmpeg is broken
         sr_out = int(sample_rate)
         full_dir, filename, counter, subfolder, _ = folder_paths.get_save_image_path(
             filename_prefix, folder_paths.get_output_directory())

@@ -331,10 +331,10 @@
       },
       "widgets_values": [
         "CHARACTER_2",
-        "neutral",
-        "adult",
-        "neutral",
-        50,
+        "female",
+        "young_adult",
+        "happy",
+        60,
         1.0,
         0,
         "",
@@ -397,10 +397,10 @@
       },
       "widgets_values": [
         "CHARACTER_3",
-        "neutral",
-        "adult",
-        "neutral",
-        50,
+        "male",
+        "elderly",
+        "wise",
+        45,
         1.0,
         0,
         "",
@@ -568,7 +568,7 @@
         "Node name for S&R": "SpeechGodGenerate"
       },
       "widgets_values": [
-        "Write your dialogue here.\n\nSingle voice: just type the lines (Character 1 speaks everything).\n\nMulti-character: tag lines with the character_name you set in each\nCharacter node, e.g.:\n\n[CHARACTER_1]\nFirst line of dialogue.\n\n[CHARACTER_2]\nSecond character replies.\n\n(or inline:  CHARACTER_1: First line of dialogue.)",
+        "[CHARACTER_1]\nHey, did you finally get the voices working?\n\n[CHARACTER_2]\nYes! Speech God rendered this whole conversation locally.\n\n[CHARACTER_1]\nNo cloud, no subscription. Let's make something amazing.\n\n(Tip: tags must match each Character node's character_name, case-insensitive. Untagged text = single voice. Connect a Voice Reference for a specific cloned voice; otherwise a bundled default voice is used.)",
         0,
         "randomize",
         20,
