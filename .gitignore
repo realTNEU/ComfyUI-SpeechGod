@@ -5,3 +5,4 @@ characters/*.json
 characters/*.voice
 assets/default_voices/*.wav
 assets/default_voices/*.mp3
+*.db
