@@ -1,0 +1,585 @@
+{
+  "id": "5feec900-0003-4a7b-9c61-a0b1c2d3e4f5",
+  "revision": 0,
+  "last_node_id": 90,
+  "last_link_id": 8,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "SpeechGodLoader",
+      "pos": [
+        -1400,
+        -250
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodLoader"
+      },
+      "widgets_values": [
+        "f5-tts",
+        "auto",
+        "auto"
+      ],
+      "title": "⚙ Speech-God Loader",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 10,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1400,
+        -60
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "SQUIRREL",
+        "female",
+        "child",
+        "excited",
+        85,
+        1.15,
+        0,
+        "energetic cartoon squirrel",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        70
+      ],
+      "title": "🎭 SQUIRREL",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 11,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1400,
+        560
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "ELEPHANT",
+        "male",
+        "elderly",
+        "wise",
+        35,
+        0.9,
+        0,
+        "gentle kind elephant",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "title": "🎭 ELEPHANT",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 12,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1400,
+        1180
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "FOX",
+        "male",
+        "adult",
+        "evil",
+        65,
+        1.0,
+        0,
+        "sly scheming villain",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        60,
+        0,
+        0
+      ],
+      "title": "🎭 FOX",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 30,
+      "type": "SpeechGodCast",
+      "pos": [
+        -950,
+        60
+      ],
+      "size": [
+        260,
+        130
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character_1",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 1
+        },
+        {
+          "name": "character_2",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 2
+        },
+        {
+          "name": "character_3",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 3
+        },
+        {
+          "name": "character_4",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCast"
+      },
+      "widgets_values": [],
+      "title": "🎭 Cast"
+    },
+    {
+      "id": 40,
+      "type": "SpeechGodGenerate",
+      "pos": [
+        -650,
+        -100
+      ],
+      "size": [
+        420,
+        360
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "link": 4
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": 5
+        },
+        {
+          "name": "dialogue",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "dialogue"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodGenerate"
+      },
+      "widgets_values": [
+        "[SQUIRREL]\nWe found it!\n\n[ELEPHANT]\nAre you sure?\n\n[FOX]\nGive me the treasure!",
+        0,
+        "randomize",
+        20,
+        1,
+        true,
+        350
+      ],
+      "title": "🎙 Speech-God Generate",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 50,
+      "type": "SpeechGodPostProcess",
+      "pos": [
+        -180,
+        -100
+      ],
+      "size": [
+        340,
+        360
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            7,
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodPostProcess"
+      },
+      "widgets_values": [
+        false,
+        true,
+        -18.0,
+        true,
+        true,
+        false,
+        0.0,
+        0.0,
+        0.0,
+        false,
+        true
+      ],
+      "title": "🧪 Post Process"
+    },
+    {
+      "id": 60,
+      "type": "SpeechGodExport",
+      "pos": [
+        200,
+        -100
+      ],
+      "size": [
+        340,
+        160
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "saved_files",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodExport"
+      },
+      "widgets_values": [
+        "speech-god/dialogue",
+        "wav",
+        "44100"
+      ],
+      "title": "💾 Export",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 61,
+      "type": "PreviewAudio",
+      "pos": [
+        200,
+        120
+      ],
+      "size": [
+        320,
+        120
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 8
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": [],
+      "title": "🔊 Preview"
+    },
+    {
+      "id": 90,
+      "type": "Note",
+      "pos": [
+        -650,
+        -420
+      ],
+      "size": [
+        480,
+        260
+      ],
+      "flags": {},
+      "order": 90,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "Multi-character: lines route by [NAME] tags to the matching Character node."
+      ],
+      "title": "📖 Notes",
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      10,
+      0,
+      30,
+      0,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      2,
+      11,
+      0,
+      30,
+      1,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      3,
+      12,
+      0,
+      30,
+      2,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      4,
+      1,
+      0,
+      40,
+      0,
+      "SPEECHGOD_ENGINE"
+    ],
+    [
+      5,
+      30,
+      0,
+      40,
+      1,
+      "SPEECHGOD_CAST"
+    ],
+    [
+      6,
+      40,
+      0,
+      50,
+      0,
+      "AUDIO"
+    ],
+    [
+      7,
+      50,
+      0,
+      60,
+      0,
+      "AUDIO"
+    ],
+    [
+      8,
+      50,
+      0,
+      61,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.42.15"
+  },
+  "version": 0.4
+}

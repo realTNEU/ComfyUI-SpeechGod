@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-speechgod"
+description = "Speech-God: expressive character-dialogue TTS suite for ComfyUI. F5-TTS / Fish Speech engines, voice cloning, emotion acting, multi-character scripts, character database, alternate takes, post-processing and export."
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = ["f5-tts>=1.1.0", "noisereduce>=3.0.0", "soundfile>=0.12.1"]
+
+[project.urls]
+Repository = "https://github.com/realTNEU/ComfyUI-SpeechGod"
+
+[tool.comfy]
+PublisherId = "realtneu"
+DisplayName = "Speech-God"
+Icon = ""

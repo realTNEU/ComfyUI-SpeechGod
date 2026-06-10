@@ -1,0 +1,524 @@
+{
+  "id": "5feec900-0004-4a7b-9c61-a0b1c2d3e4f5",
+  "revision": 0,
+  "last_node_id": 90,
+  "last_link_id": 8,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "SpeechGodLoader",
+      "pos": [
+        -1400,
+        -250
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodLoader"
+      },
+      "widgets_values": [
+        "f5-tts",
+        "auto",
+        "auto"
+      ],
+      "title": "⚙ Speech-God Loader",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 10,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1400,
+        -60
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": 1
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            2,
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "CLONED",
+        "neutral",
+        "adult",
+        "neutral",
+        50,
+        1.0,
+        0,
+        "",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "title": "🎭 CLONED",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 5,
+      "type": "LoadAudio",
+      "pos": [
+        -1850,
+        0
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "example.wav",
+        null,
+        ""
+      ],
+      "title": "Voice Reference (load your clip)",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 6,
+      "type": "SpeechGodSaveCharacter",
+      "pos": [
+        -950,
+        200
+      ],
+      "size": [
+        280,
+        70
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "saved_as",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodSaveCharacter"
+      },
+      "widgets_values": [],
+      "title": "Save Character"
+    },
+    {
+      "id": 30,
+      "type": "SpeechGodCast",
+      "pos": [
+        -950,
+        60
+      ],
+      "size": [
+        260,
+        130
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character_1",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 3
+        },
+        {
+          "name": "character_2",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "character_3",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "character_4",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCast"
+      },
+      "widgets_values": [],
+      "title": "🎭 Cast"
+    },
+    {
+      "id": 40,
+      "type": "SpeechGodGenerate",
+      "pos": [
+        -650,
+        -100
+      ],
+      "size": [
+        420,
+        360
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "link": 4
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": 5
+        },
+        {
+          "name": "dialogue",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "dialogue"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodGenerate"
+      },
+      "widgets_values": [
+        "This is my cloned voice speaking. The timbre, cadence and texture follow the reference clip.",
+        0,
+        "randomize",
+        20,
+        1,
+        true,
+        350
+      ],
+      "title": "🎙 Speech-God Generate",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 50,
+      "type": "SpeechGodPostProcess",
+      "pos": [
+        -180,
+        -100
+      ],
+      "size": [
+        340,
+        360
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            7,
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodPostProcess"
+      },
+      "widgets_values": [
+        false,
+        true,
+        -18.0,
+        true,
+        true,
+        false,
+        0.0,
+        0.0,
+        0.0,
+        false,
+        true
+      ],
+      "title": "🧪 Post Process"
+    },
+    {
+      "id": 60,
+      "type": "SpeechGodExport",
+      "pos": [
+        200,
+        -100
+      ],
+      "size": [
+        340,
+        160
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "saved_files",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodExport"
+      },
+      "widgets_values": [
+        "speech-god/cloned",
+        "wav",
+        "44100"
+      ],
+      "title": "💾 Export",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 61,
+      "type": "PreviewAudio",
+      "pos": [
+        200,
+        120
+      ],
+      "size": [
+        320,
+        120
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 8
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": [],
+      "title": "🔊 Preview"
+    },
+    {
+      "id": 90,
+      "type": "Note",
+      "pos": [
+        -650,
+        -420
+      ],
+      "size": [
+        480,
+        260
+      ],
+      "flags": {},
+      "order": 90,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "Voice cloning: load a clean 5-15 second clip in the LoadAudio node.\nFill 'reference_text' on the Character with the clip transcript for best\nquality (F5-TTS auto-transcribes if left empty). Save Character stores\nthe voice for reuse across episodes."
+      ],
+      "title": "📖 Notes",
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      5,
+      0,
+      10,
+      0,
+      "AUDIO"
+    ],
+    [
+      2,
+      10,
+      0,
+      6,
+      0,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      3,
+      10,
+      0,
+      30,
+      0,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      4,
+      1,
+      0,
+      40,
+      0,
+      "SPEECHGOD_ENGINE"
+    ],
+    [
+      5,
+      30,
+      0,
+      40,
+      1,
+      "SPEECHGOD_CAST"
+    ],
+    [
+      6,
+      40,
+      0,
+      50,
+      0,
+      "AUDIO"
+    ],
+    [
+      7,
+      50,
+      0,
+      60,
+      0,
+      "AUDIO"
+    ],
+    [
+      8,
+      50,
+      0,
+      61,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.42.15"
+  },
+  "version": 0.4
+}

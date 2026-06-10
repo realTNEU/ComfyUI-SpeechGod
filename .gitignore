@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# user data - don't publish personal character voices
+characters/*.json
+characters/*.voice
+assets/default_voices/*.wav
+assets/default_voices/*.mp3

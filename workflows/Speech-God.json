@@ -1,0 +1,926 @@
+{
+  "id": "5feec900-0001-4a7b-9c61-a0b1c2d3e4f5",
+  "revision": 0,
+  "last_node_id": 90,
+  "last_link_id": 14,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "SpeechGodLoader",
+      "pos": [
+        -1750,
+        -300
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodLoader"
+      },
+      "widgets_values": [
+        "f5-tts",
+        "auto",
+        "auto"
+      ],
+      "title": "⚙ Speech-God Loader",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 10,
+      "type": "LoadAudio",
+      "pos": [
+        -2200,
+        0
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "example.wav",
+        null,
+        ""
+      ],
+      "title": "Voice Ref: Character 1 (optional)",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 11,
+      "type": "LoadAudio",
+      "pos": [
+        -2200,
+        180
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "example.wav",
+        null,
+        ""
+      ],
+      "title": "Voice Ref: Character 2 (optional)",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 12,
+      "type": "LoadAudio",
+      "pos": [
+        -2200,
+        360
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "example.wav",
+        null,
+        ""
+      ],
+      "title": "Voice Ref: Character 3 (optional)",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 13,
+      "type": "LoadAudio",
+      "pos": [
+        -2200,
+        540
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "example.wav",
+        null,
+        ""
+      ],
+      "title": "Emotion Ref (optional)",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 14,
+      "type": "SpeechGodEmotionBlend",
+      "pos": [
+        -2200,
+        720
+      ],
+      "size": [
+        320,
+        150
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodEmotionBlend"
+      },
+      "widgets_values": [
+        "happy",
+        70,
+        "excited",
+        30
+      ],
+      "title": "Emotion Blend (optional)"
+    },
+    {
+      "id": 20,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1750,
+        -80
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": 1
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": 2
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            6,
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "CHARACTER_1",
+        "neutral",
+        "adult",
+        "neutral",
+        50,
+        1.0,
+        0,
+        "",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "title": "🎭 Character 1",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 21,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1750,
+        540
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": 4
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "CHARACTER_2",
+        "neutral",
+        "adult",
+        "neutral",
+        50,
+        1.0,
+        0,
+        "",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "title": "🎭 Character 2",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 22,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1750,
+        1160
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": 5
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "CHARACTER_3",
+        "neutral",
+        "adult",
+        "neutral",
+        50,
+        1.0,
+        0,
+        "",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "title": "🎭 Character 3",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 30,
+      "type": "SpeechGodCast",
+      "pos": [
+        -1280,
+        540
+      ],
+      "size": [
+        260,
+        130
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character_1",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 6
+        },
+        {
+          "name": "character_2",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 7
+        },
+        {
+          "name": "character_3",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 8
+        },
+        {
+          "name": "character_4",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCast"
+      },
+      "widgets_values": [],
+      "title": "🎭 Cast"
+    },
+    {
+      "id": 31,
+      "type": "SpeechGodSaveCharacter",
+      "pos": [
+        -1280,
+        760
+      ],
+      "size": [
+        280,
+        70
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "saved_as",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodSaveCharacter"
+      },
+      "widgets_values": [],
+      "title": "Save Character (optional)"
+    },
+    {
+      "id": 40,
+      "type": "SpeechGodGenerate",
+      "pos": [
+        -950,
+        200
+      ],
+      "size": [
+        420,
+        360
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "link": 10
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": 11
+        },
+        {
+          "name": "dialogue",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "dialogue"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            12
+          ]
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodGenerate"
+      },
+      "widgets_values": [
+        "Write your dialogue here.\n\nSingle voice: just type the lines (Character 1 speaks everything).\n\nMulti-character: tag lines with the character_name you set in each\nCharacter node, e.g.:\n\n[CHARACTER_1]\nFirst line of dialogue.\n\n[CHARACTER_2]\nSecond character replies.\n\n(or inline:  CHARACTER_1: First line of dialogue.)",
+        0,
+        "randomize",
+        20,
+        1,
+        true,
+        350
+      ],
+      "title": "🎙 Speech-God Generate",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 50,
+      "type": "SpeechGodPostProcess",
+      "pos": [
+        -470,
+        200
+      ],
+      "size": [
+        340,
+        360
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            13,
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodPostProcess"
+      },
+      "widgets_values": [
+        false,
+        true,
+        -18.0,
+        true,
+        true,
+        false,
+        0.0,
+        0.0,
+        0.0,
+        false,
+        true
+      ],
+      "title": "🧪 Post Process"
+    },
+    {
+      "id": 60,
+      "type": "SpeechGodExport",
+      "pos": [
+        -80,
+        200
+      ],
+      "size": [
+        340,
+        160
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "saved_files",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodExport"
+      },
+      "widgets_values": [
+        "speech-god/scene",
+        "wav",
+        "44100"
+      ],
+      "title": "💾 Export",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 61,
+      "type": "PreviewAudio",
+      "pos": [
+        -80,
+        420
+      ],
+      "size": [
+        320,
+        120
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 14
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": [],
+      "title": "🔊 Preview"
+    },
+    {
+      "id": 90,
+      "type": "Note",
+      "pos": [
+        -470,
+        -420
+      ],
+      "size": [
+        560,
+        560
+      ],
+      "flags": {},
+      "order": 90,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "SPEECH-GOD - character dialogue TTS (F5-TTS / Fish Speech)\n\n1. ENGINE: pick f5-tts or fish-speech in the Loader. F5-TTS is the\n   lighter, easier install; Fish Speech adds inline emotion markers.\n2. CHARACTERS: rename character_name in each Character node to YOUR\n   character (e.g. ZIKKI, ZUMBOO, NARRATOR) and set gender/age/tone/\n   energy/speed + micro sliders. Unused Character nodes? Ctrl+B them\n   and unplug from Cast - or chain another Cast node for more than 4.\n3. DIALOGUE: write a script in the Generate node. Tags must match the\n   character_name values (case-insensitive). Formats:\n      [ZIKKI]               or       ZIKKI: Hey Zumboo!\n      Hey Zumboo!\n   Untagged text = single-voice mode (first character speaks).\n4. OPTIONAL inputs (purple LoadAudio nodes, Ctrl+B to enable):\n   - Voice Reference: clone any speaker from a 5-15s clip\n   - Emotion Reference: borrow pacing/emotion from another clip\n   - Emotion Blend node: e.g. 70% happy + 30% excited\n5. NO REFERENCE? Drop seed voices into\n   custom_nodes/ComfyUI-SpeechGod/assets/default_voices/\n   (see README.txt there) - cloning engines always need some voice.\n6. TAKES: set takes=2..8 for alternate deliveries (batched output).\n   variation_strength controls how different takes sound.\n7. CONSISTENCY: 'Save Character' writes characters/<name>.json+.voice;\n   reload with 'Load Character' in any other workflow/episode.\n8. Post Process: normalize/compress/limit on by default; NR, EQ,\n   de-breath, silence trim toggleable.\n9. Export: wav/flac/mp3 at 22050/44100/48000."
+      ],
+      "title": "📖 SPEECH-GOD - HOW TO USE",
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      10,
+      0,
+      20,
+      0,
+      "AUDIO"
+    ],
+    [
+      2,
+      13,
+      0,
+      20,
+      1,
+      "AUDIO"
+    ],
+    [
+      3,
+      14,
+      0,
+      20,
+      2,
+      "SPEECHGOD_EMOTION"
+    ],
+    [
+      4,
+      11,
+      0,
+      21,
+      0,
+      "AUDIO"
+    ],
+    [
+      5,
+      12,
+      0,
+      22,
+      0,
+      "AUDIO"
+    ],
+    [
+      6,
+      20,
+      0,
+      30,
+      0,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      7,
+      21,
+      0,
+      30,
+      1,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      8,
+      22,
+      0,
+      30,
+      2,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      9,
+      20,
+      0,
+      31,
+      0,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      10,
+      1,
+      0,
+      40,
+      0,
+      "SPEECHGOD_ENGINE"
+    ],
+    [
+      11,
+      30,
+      0,
+      40,
+      1,
+      "SPEECHGOD_CAST"
+    ],
+    [
+      12,
+      40,
+      0,
+      50,
+      0,
+      "AUDIO"
+    ],
+    [
+      13,
+      50,
+      0,
+      60,
+      0,
+      "AUDIO"
+    ],
+    [
+      14,
+      50,
+      0,
+      61,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "CHARACTER SYSTEM",
+      "bounding": [
+        -2250,
+        -150,
+        940,
+        1640
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "VOICE CLONING (optional)",
+      "bounding": [
+        -2250,
+        -60,
+        380,
+        980
+      ],
+      "color": "#a1309b",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "SPEECH-GOD CORE",
+      "bounding": [
+        -1800,
+        -380,
+        900,
+        200
+      ],
+      "color": "#b58b2a",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "GENERATION",
+      "bounding": [
+        -1000,
+        130,
+        520,
+        480
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "POST PROCESSING",
+      "bounding": [
+        -500,
+        130,
+        380,
+        480
+      ],
+      "color": "#88A",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "EXPORT",
+      "bounding": [
+        -110,
+        130,
+        400,
+        460
+      ],
+      "color": "#A88",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.42.15"
+  },
+  "version": 0.4
+}

@@ -1,0 +1,15 @@
+# Speech-God dependencies (install into the ComfyUI venv:
+#   C:\Users\TNEU\ComfyUI-Installs\ComfyUI\ComfyUI\.venv\Scripts\pip.exe install -r requirements.txt
+#
+# torch / torchaudio are already provided by ComfyUI itself.
+
+# --- F5-TTS engine (recommended first engine; auto-downloads models) ---
+f5-tts>=1.1.0
+
+# --- audio post processing ---
+noisereduce>=3.0.0
+soundfile>=0.12.1
+
+# --- Fish Speech engine (OPTIONAL - heavier install) ---
+# fish-speech is best installed from source; see README.md section "Fish Speech".
+# pip install fish-speech   # may work directly on recent releases

@@ -1,0 +1,511 @@
+{
+  "id": "5feec900-0005-4a7b-9c61-a0b1c2d3e4f5",
+  "revision": 0,
+  "last_node_id": 90,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "SpeechGodLoader",
+      "pos": [
+        -1400,
+        -250
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodLoader"
+      },
+      "widgets_values": [
+        "f5-tts",
+        "auto",
+        "auto"
+      ],
+      "title": "⚙ Speech-God Loader",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 10,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1400,
+        -60
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "ZIPPY",
+        "female",
+        "child",
+        "excited",
+        95,
+        1.3,
+        0,
+        "hyperactive cartoon chipmunk, squeaky and bouncy",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        90
+      ],
+      "title": "🎭 ZIPPY",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 11,
+      "type": "SpeechGodCharacter",
+      "pos": [
+        -1400,
+        560
+      ],
+      "size": [
+        380,
+        560
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "voice_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_reference",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "emotion_blend",
+          "type": "SPEECHGOD_EMOTION",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "character",
+          "type": "SPEECHGOD_CHARACTER",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCharacter"
+      },
+      "widgets_values": [
+        "GRUMBLE",
+        "male",
+        "elderly",
+        "angry",
+        40,
+        0.85,
+        0,
+        "grumpy old bear who secretly cares",
+        "",
+        "",
+        0,
+        0,
+        0,
+        0,
+        30,
+        0,
+        0
+      ],
+      "title": "🎭 GRUMBLE",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 30,
+      "type": "SpeechGodCast",
+      "pos": [
+        -950,
+        60
+      ],
+      "size": [
+        260,
+        130
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "character_1",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 1
+        },
+        {
+          "name": "character_2",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": 2
+        },
+        {
+          "name": "character_3",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "character_4",
+          "type": "SPEECHGOD_CHARACTER",
+          "link": null
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodCast"
+      },
+      "widgets_values": [],
+      "title": "🎭 Cast"
+    },
+    {
+      "id": 40,
+      "type": "SpeechGodGenerate",
+      "pos": [
+        -650,
+        -100
+      ],
+      "size": [
+        420,
+        360
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "engine",
+          "type": "SPEECHGOD_ENGINE",
+          "link": 3
+        },
+        {
+          "name": "cast",
+          "type": "SPEECHGOD_CAST",
+          "link": 4
+        },
+        {
+          "name": "dialogue",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "dialogue"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodGenerate"
+      },
+      "widgets_values": [
+        "[ZIPPY]\nGrumble! Grumble! Wake up! It's adventure time!\n\n[GRUMBLE]\nFor the last time, Zippy... bears hibernate. This is hibernating.\n\n[ZIPPY]\nBut there's a rainbow! A DOUBLE rainbow!",
+        0,
+        "randomize",
+        20,
+        2,
+        true,
+        350
+      ],
+      "title": "🎙 Speech-God Generate",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 50,
+      "type": "SpeechGodPostProcess",
+      "pos": [
+        -180,
+        -100
+      ],
+      "size": [
+        340,
+        360
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            6,
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodPostProcess"
+      },
+      "widgets_values": [
+        false,
+        true,
+        -18.0,
+        true,
+        true,
+        false,
+        0.0,
+        0.0,
+        0.0,
+        false,
+        true
+      ],
+      "title": "🧪 Post Process"
+    },
+    {
+      "id": 60,
+      "type": "SpeechGodExport",
+      "pos": [
+        200,
+        -100
+      ],
+      "size": [
+        340,
+        160
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "saved_files",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SpeechGodExport"
+      },
+      "widgets_values": [
+        "speech-god/cartoon",
+        "wav",
+        "44100"
+      ],
+      "title": "💾 Export",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 61,
+      "type": "PreviewAudio",
+      "pos": [
+        200,
+        120
+      ],
+      "size": [
+        320,
+        120
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 7
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": [],
+      "title": "🔊 Preview"
+    },
+    {
+      "id": 90,
+      "type": "Note",
+      "pos": [
+        -650,
+        -420
+      ],
+      "size": [
+        480,
+        260
+      ],
+      "flags": {},
+      "order": 90,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "Cartoon characters: high cuteness/energy + pitch from child age =\nclassic cartoon timbre. takes=2 generates two alternate deliveries."
+      ],
+      "title": "📖 Notes",
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      10,
+      0,
+      30,
+      0,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      2,
+      11,
+      0,
+      30,
+      1,
+      "SPEECHGOD_CHARACTER"
+    ],
+    [
+      3,
+      1,
+      0,
+      40,
+      0,
+      "SPEECHGOD_ENGINE"
+    ],
+    [
+      4,
+      30,
+      0,
+      40,
+      1,
+      "SPEECHGOD_CAST"
+    ],
+    [
+      5,
+      40,
+      0,
+      50,
+      0,
+      "AUDIO"
+    ],
+    [
+      6,
+      50,
+      0,
+      60,
+      0,
+      "AUDIO"
+    ],
+    [
+      7,
+      50,
+      0,
+      61,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.42.15"
+  },
+  "version": 0.4
+}
